@@ -18,18 +18,17 @@
 	<br> ${message}
 	<c:url var="action" value="/login"></c:url>
 
-
-	<form:form action="${action}" method="post">
+	<!--<form name='f' action="j_spring_security_check" method='POST'>-->
+	<form:form action="${action}" method="post" name="myForm">
 		<table>
 			<tr>
 				<td>User Name:</td>
-				<td><input type="name" name="name" placeholder="name"></td>
+				<td><input type="name" name="name"  placeholder="name" autofocus required="name"></td>
 			</tr>
 
 			<tr>
 				<td>Password:</td>
-				<td><input type="password" name="password"
-					placeholder="password" /></td>
+				<td><input type="password" name="password" placeholder="password" autofocus required="password"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="Login"></td>
@@ -40,7 +39,7 @@
 
 
 	</form:form>
-
+	
 
 
 </body>

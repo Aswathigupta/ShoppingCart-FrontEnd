@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<link rel="stylesheet" href="<c:url value="/resources/admin.css" />">
+<link rel="stylesheet" href="<c:url value="resources/css/admin.css" />">
 
 <html>
 <head>
@@ -13,7 +13,8 @@
 
 	<c:url var="addAction" value="/product/add"></c:url>
 
-	<form:form action="${addAction}" commandName="product">
+	<form:form action="${addAction}" commandName="product"
+		enctype="multipart/form-data" method="POST">
 		<table>
 			<tr>
 				<td><form:label path="id">
@@ -52,7 +53,6 @@
 					</form:label></td>
 				<td><form:input path="description" required="true" /></td>
 			</tr>
-
 			<tr>
 				<td><form:label path="supplier">
 						<spring:message text="Supplier" />
@@ -67,6 +67,14 @@
 				<td><form:select path="category.name" items="${categoryList}"
 						itemValue="name" itemLabel="name" /></td>
 			</tr>
+
+			<tr>
+				<td align="left"><form:label path="image">
+						<spring:message text="Image" />
+					</form:label></td>
+				<td align="left"><form:input type="file" path="image" /></td>
+			</tr>
+
 			<tr>
 				<td colspan="2"><c:if test="${!empty product.name}">
 						<input type="submit" value="<spring:message text="Edit Product"/>" />
@@ -75,6 +83,7 @@
 					</c:if></td>
 			</tr>
 		</table>
+
 	</form:form>
 	<br>
 
@@ -90,11 +99,14 @@
 				<th width="80">Price</th>
 				<th width="80">Product Category</th>
 				<th width="80">Product Supplier</th>
+				
 				<th width="60">Edit</th>
 				<th width="60">Delete</th>
+				<th width="80">Product Supplier</th>
 			</tr>
 			<c:forEach items="${productList}" var="product">
 				<tr>
+					
 					<td>${product.id}</td>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
@@ -105,7 +117,7 @@
 					<td><a href="<c:url value='product/remove/${product.id}' />">Delete</a></td>
 				</tr>
 			</c:forEach>
-		</table>
+		</table>	
 	</c:if>
 </body>
 </html>
