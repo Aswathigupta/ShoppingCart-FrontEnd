@@ -66,11 +66,13 @@ public class TestController {
 		return mv;
 	}
 
-	@RequestMapping(value = "here/home", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute User user) {
+	@RequestMapping(value = "here/home", method = RequestMethod.GET)
+	public ModelAndView registerUser(HttpSession session) {
+		
 		log.debug("Starting of the method register");
+		User user = (User) session.getAttribute("user");
 		userDAO.saveOrUpdate(user);
-		ModelAndView mv = new ModelAndView("/test");
+		ModelAndView mv = new ModelAndView("redirect:/");
 		mv.addObject("successMessage", "You are successfully register");
 		log.debug("Ending of the method register");
 		return mv;

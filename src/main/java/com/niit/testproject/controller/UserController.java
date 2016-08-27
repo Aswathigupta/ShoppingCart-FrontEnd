@@ -75,7 +75,9 @@ public class UserController {
 
 				List<Cart> cartList = cartDAO.list(userID);
 				mv.addObject("cartList", cartList);
-				mv.addObject("cartSize", cartList.size());
+//				mv.addObject("cartSize", cartList.size());
+				
+				session.setAttribute("cartSize", cartList.size());
 				}
 			}
 

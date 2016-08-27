@@ -21,7 +21,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <script src="resources/js/bootstarp.js"></script>
-<script src="resources/js/bootstarp.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/jquery.min.js"></script>
 <script src="resources/js/simpleCart.min.js"></script>
 
@@ -54,7 +54,7 @@
 
 
 								<li><a href="home">LOGIN</a></li>|
-						<li><a href="register">REGISTER</a></li>
+						<li><a href="member.obj">REGISTER</a></li>
 							</c:when>
 							<c:when test="${not empty loggedInUser}">
 

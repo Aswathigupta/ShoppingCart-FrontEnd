@@ -1,16 +1,24 @@
 package com.niit.testproject.handler;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.stereotype.Component;
+import org.springframework.webflow.execution.RequestContext;
+
 import com.niit.shoppingcart.model.User;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Component
 public class registrationHandler {
 
-	public User initflow() {
+	public User getInstance() {
 		return new User();
 	}
+
 
 	
 	public String validateCredentials(User user,MessageContext messageContext){
@@ -49,4 +57,9 @@ public class registrationHandler {
 		return status;
 		
 	}
+	
+	public void addUser(RequestContext context, User user){
+	    HttpSession session = ((HttpServletRequest)context.getExternalContext().getNativeRequest()).getSession();
+	              session.setAttribute("user",user);
+	       }
 }
