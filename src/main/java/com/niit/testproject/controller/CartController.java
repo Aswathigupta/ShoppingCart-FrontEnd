@@ -74,14 +74,15 @@ public class CartController {
      cart.setUser(userDAO.get(loggedInUserid));  //  id should keep session and use the same id
 	 cart.setStatus('N');  // 
 		cartDAO.saveOrUpdate(cart);
+		session.setAttribute("cartSize", cartDAO.list(loggedInUserid).size());
 
 		//return "redirect:/views/home.jsp";
 		return "redirect:/";
 		
 	}
 	
-	@RequestMapping("/myCart/delete/{id}")
-    public String removeCart(@PathVariable("id") String id,ModelMap model) throws Exception{
+	@RequestMapping("/myCart/remove/{id}")
+    public String removeCart(@PathVariable("id") String id,ModelMap model,HttpSession session) throws Exception{
 		
        try {
 		cartDAO.delete(id);
@@ -90,8 +91,10 @@ public class CartController {
 		model.addAttribute("message",e.getMessage());
 		e.printStackTrace();
 	}
+       String loggedInUserid = (String) session.getAttribute("loggedInUserid");
+       session.setAttribute("cartSize", cartDAO.list(loggedInUserid).size());
        //redirectAttrs.addFlashAttribute(arg0, arg1)
-        return "redirect:/test";
+        return "redirect:/myCart";
     }
 // 
 //    @RequestMapping("cart/edit/{id}")

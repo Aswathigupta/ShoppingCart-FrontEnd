@@ -29,7 +29,7 @@
 				<td align="left">${cart.product.name}</td>
 				<td align="left">${cart.quantity}</td>
 				<td align="left">${cart.price}</td>
-				<td align="left"><a href="<c:url value='/myCart/delete/${cart.id}'  />">Delete</a></td>
+				<td align="left"><a href="<c:url value='/myCart/remove/${cart.id}'  />">Delete</a></td>
 				
 			</tr>
 		</c:forEach>
